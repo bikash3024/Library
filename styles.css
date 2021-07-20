@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600&family=Roboto:wght@400;700&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Quicksand', 'Roboto', sans-serif;
+}
+
+html {
+    font-family: sans-serif;
+    /* 1 */
+    -ms-text-size-adjust: 100%;
+    /* 2 */
+    -webkit-text-size-adjust: 100%;
+    /* 2 */
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+h2 {
+    font-size: 2rem;
+}
+
+h3 {
+    font-size: 1.2rem;
+}
+
+p {
+    font-size: 1rem;
+}
+
+header {
+    display: block;
+    margin: 3rem auto;
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+.cursorPointer {
+    cursor: pointer;
+}
+
+#add-book {
+    font-size: 2rem;
+    position: absolute;
+    border-radius: 50%;
+    background-color: blue;
+    height: 50px;
+    width: 50px;
+    margin: 0 0 3% 3%;
+    bottom: 0px;
+    color: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #000;
+}
+
+#catalog-container {
+    display: block;
+    width: 40%;
+    margin: 10px 0 10px 10%;
+    font-size: 2rem;
+    border: 1px solid gray;
+    padding: 10px;
+}
+
+#books-container {
+    border: 1px solid gray;
+    margin: 3%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.card {
+    margin: 2%;
+    padding: 2%;
+    border: 1px solid gray;
+}
+
+label {
+    display: block;
+}
+
+#mainForm {
+    margin: 10% 0 0 0;
+    padding: 0 0 0 10px;
+    width: 70%;
+    height: 75%;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.submitButton {
+    width: 50%;
+    border-radius: 5px;
+    border: 1px solid gray;
+    margin: 0 25% 0 25%;
+    text-align: center;
+}
+
+.form-container {
+    display: flex;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    z-index: 20;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+}
+
+.displayNone {
+    display: none;
+}
+
+input,
+select {
+    margin: 10px 0 0 0;
+}
+
+select {
+    width: 50%;
+}
+
+button:disabled {
+    border: 1px solid gray;
+}

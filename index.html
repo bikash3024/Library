@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header>
+        <h2>BOOK LIBRARY</h2>
+        <p>Part of the odinproject</p>
+        <p>created by @bikash3024</p>
+    </header>
+    <div id="catalog-container">
+        <h3>Catalog</h3>
+        <div>
+            <p id="totalBooks">Total books: </p>
+            <p id="totalReadBooks">total read books: </p>
+        </div>
+    </div>
+    <div id="books-container">
+
+    </div>
+    <div class="form-container displayNone">
+        <div id="mainForm">
+            <h3 style="align-self: center;">Enter book details</h3>
+            <div id="titleDiv">
+                <label for="book-title">Enter book title*</label>
+                <input id="book-title">
+            </div>
+            <div id="authorDiv">
+                <label for="book-author">Enter book author*</label>
+                <input id="book-author">
+            </div>
+            <div id="noOfPagesDiv">
+                <label for="book-noOfpages">Enter number of pages*</label>
+                <input id="book-noOfpages">
+            </div>
+            <div id="selectDiv">
+                <label for="read-or-not-select">Have you read the book?</label>
+                <select id="read-or-not-select">
+                <option value="Not read">Not read</option>
+                <option value="Read">Read</option>
+                </select>
+
+            </div>
+            <button class="cursorPointer submitButton">Submit</button>
+        </div>
+
+    </div>
+    <footer class="cursorPointer" id="add-book">
+        <p>Add</p>
+    </footer>
+    <script src="book.js"></script>
+</body>
+
+
+</html>
