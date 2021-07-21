@@ -9,38 +9,83 @@ const readOrNotInput = document.querySelector('#read-or-not-select');
 const addBookButton = document.querySelector("#add-book");
 const formSubmitButton = document.querySelector(".submitButton");
 const formContainer = document.querySelector(".form-container")
-let currentNoBooks = 0;
+let currentIndex = 0;
 
 function Book(title, author, noOfPages, readOrNot) {
     this.title = title;
     this.author = author;
     this.noOfPages = noOfPages;
-    this.read = readOrNot;
+    this.readOrNot = readOrNot;
     this.info = function() {
-        return `${this.title} by ${this.author}, ${this.noOfPages}, ${this.read} yet.`
+        return `${this.title} by ${this.author}, ${this.noOfPages}, ${this.readOrNot} yet.`
     }
 }
 
 
 
-let book1 = new Book("Atomic Habits", "James Clear", 306, "not read");
-let book2 = new Book("The richest man in Babylon", "George Clason", 144, "Read");
-let book3 = new Book("Atomic Habits", "James Clear", 306, "not read");
-let book4 = new Book("The richest man in Babylon", "George Clason", 144, "Read");
-let book5 = new Book("Atomic Habits", "James Clear", 306, "not read");
-let book6 = new Book("The richest man in Babylon", "George Clason", 144, "Read");
-myLibrary.push(book1);
-myLibrary.push(book2);
-myLibrary.push(book3);
-myLibrary.push(book4);
-myLibrary.push(book5);
-myLibrary.push(book6);
+// let book1 = new Book("Atomic Habits", "James Clear", 306, "not read");
+// let book2 = new Book("The richest man in Babylon", "George Clason", 144, "Read");
+// let book3 = new Book("Atomic Habits", "James Clear", 306, "not read");
+// let book4 = new Book("The richest man in Babylon", "George Clason", 144, "Read");
+// let book5 = new Book("Atomic Habits", "James Clear", 306, "not read");
+// let book6 = new Book("The richest man in Babylon", "George Clason", 144, "Read");
+// myLibrary.push(book1);
+// myLibrary.push(book2);
+// myLibrary.push(book3);
+// myLibrary.push(book4);
+// myLibrary.push(book5);
+// myLibrary.push(book6);
 
-function createReadOrNotContainer(currentNoBooks) {
+function updateReadOrNotRead(e) {
+
+    let index = e.target.dataset.index;
+
+    if (e.target.checked) {
+        myLibrary[index].readOrNot = "Read";
+    } else {
+        myLibrary[index].readOrNot = "Not Read";
+    }
+}
+
+function deleteBookFromDatabaseAndFullrefresh(e) {
+    let indexToBeDeleted = parseInt(e.target.dataset.index);
+
+    myLibrary.splice(indexToBeDeleted, 1); // Deleting only one book at the index
+
+
+    const allBooks = Array.from(document.querySelectorAll(".card")); // removing all the books because the library array will be reseted so we are doing full refresh
+    allBooks.forEach(book => {
+        book.remove();
+    });
+
+    currentIndex = 0; // reseting the  current index to 0 so that entire book library is refreshed.
+    refreshBooks();
+
+}
+
+function createDeleteBookDiv(currentIndex) {
+
+    let deleteBookDiv = document.createElement("div");
+    deleteBookDiv.setAttribute("id", "deleteBookDiv");
+
+    let img = document.createElement("img");
+    img.setAttribute("src", "images/deleteImage.svg");
+    img.dataset.index = currentIndex;
+
+    img.addEventListener("click", deleteBookFromDatabaseAndFullrefresh);
+    deleteBookDiv.appendChild(img);
+
+    return deleteBookDiv;
+
+
+}
+
+
+function createReadOrNotContainer(book, currentIndex) {
 
     let container = document.createElement("div");
     container.classList.add("readOrNotContainer");
-    container.dataset.index = currentNoBooks;
+    container.dataset.index = currentIndex;
     let notReadSpan = document.createElement("span");
     notReadSpan.textContent = "Not Read";
     let readSpan = document.createElement("span");
@@ -49,9 +94,15 @@ function createReadOrNotContainer(currentNoBooks) {
     label.classList.add("switch");
     let input = document.createElement("input");
     input.setAttribute("type", "checkbox");
-    input.dataset.index = currentNoBooks;
+    input.dataset.index = currentIndex;
     let roundSlider = document.createElement("div");
     roundSlider.classList.add("slider", "round");
+
+    if (book.readOrNot == "Read") {
+        input.checked = true;
+    }
+
+    input.addEventListener("change", updateReadOrNotRead);
 
     label.appendChild(input);
     label.appendChild(roundSlider);
@@ -60,11 +111,14 @@ function createReadOrNotContainer(currentNoBooks) {
     container.appendChild(label);
     container.appendChild(readSpan);
 
+    let deleteBookDiv = createDeleteBookDiv(currentIndex);
+    container.appendChild(deleteBookDiv);
+
     return container;
 
 }
 
-function createBookCard(book, currentNoBooks) {
+function createBookCard(book, currentIndex) {
 
     let bookCard = document.createElement("div");
     bookCard.classList.add("card");
@@ -78,8 +132,8 @@ function createBookCard(book, currentNoBooks) {
     bookCard.appendChild(titleBook);
     bookCard.appendChild(authorBook);
     bookCard.appendChild(pagesBook);
-    bookCard.dataset.index = currentNoBooks;
-    let readOrNotContainer = createReadOrNotContainer(currentNoBooks);
+    bookCard.dataset.index = currentIndex;
+    let readOrNotContainer = createReadOrNotContainer(book, currentIndex);
     bookCard.appendChild(readOrNotContainer);
 
     return bookCard;
@@ -87,15 +141,16 @@ function createBookCard(book, currentNoBooks) {
 }
 
 
+
 function refreshBooks() {
 
-    for (let i = currentNoBooks; i < myLibrary.length; i++) {
+    for (let i = currentIndex; i < myLibrary.length; i++) {
 
-        let bookCard = createBookCard(myLibrary[i], currentNoBooks);
+        let bookCard = createBookCard(myLibrary[i], currentIndex);
 
         booksContainerDiv.appendChild(bookCard);
 
-        currentNoBooks++;
+        currentIndex++;
     }
 
     // const allBookCards = Array.from(document.querySelectorAll(".card"));

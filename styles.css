@@ -46,7 +46,8 @@ header {
     font-size: 1.2rem;
 }
 
-.cursorPointer {
+.cursorPointer,
+img {
     cursor: pointer;
 }
 
@@ -66,8 +67,8 @@ header {
 
 #catalog-container {
     display: block;
-    width: 40%;
-    margin: 10px 0 10px 10%;
+    width: 35%;
+    margin: 10px 0 10px 0;
     font-size: 2rem;
     border: 1px solid gray;
     padding: 10px;
@@ -80,12 +81,14 @@ header {
     grid-template-columns: 1fr 1fr;
 }
 
-.card {
+.card,
+.defaultcard {
     margin: 2%;
     padding: 2%;
     border: 1px solid gray;
     display: flex;
     flex-direction: column;
+    background-color: #a2a2a2;
 }
 
 label {
@@ -150,6 +153,7 @@ button:disabled {
     display: inline-block;
     width: 30px;
     height: 20px;
+    margin: 0 5px;
 }
 
 .switch input {
@@ -206,8 +210,6 @@ input:checked+.slider:before {
 .readOrNotContainer {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    width: 80%;
     margin: auto 0 0 0;
 }
 
@@ -222,4 +224,8 @@ span {
     display: flex;
     justify-content: space-around;
     background-color: #656565;
+}
+
+#deleteBookDiv {
+    margin: 0 0 0 auto;
 }
