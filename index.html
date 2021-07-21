@@ -12,14 +12,33 @@
         <p>Part of the odinproject</p>
         <p>created by @bikash3024</p>
     </header>
-    <div id="catalog-container">
-        <h3>Catalog</h3>
-        <div>
-            <p id="totalBooks">Total books: </p>
-            <p id="totalReadBooks">total read books: </p>
+    <div id="banner">
+        <div id="catalog-container">
+            <h3>Catalog</h3>
+            <div>
+                <p id="totalBooks">Total books: </p>
+                <p id="totalReadBooks">total read books: </p>
+            </div>
         </div>
+        <footer class="cursorPointer" id="add-book">
+            <p>Add</p>
+        </footer>
     </div>
     <div id="books-container">
+        <div class="card" data-index="25">
+            <h3>Atomic Habits</h3>
+            <p>Author: James Clear</p>
+            <p>No of pages: 306</p>
+            <div class="readOrNotContainer">
+                <span>Not Read</span>
+                <label class="switch">
+                   <input type="checkbox">
+                   <div class="slider round">
+                   </div>
+               </label>
+                <span>Read</span>
+            </div>
+        </div>
 
     </div>
     <div class="form-container displayNone">
@@ -49,9 +68,7 @@
         </div>
 
     </div>
-    <footer class="cursorPointer" id="add-book">
-        <p>Add</p>
-    </footer>
+
     <script src="book.js"></script>
 </body>
 

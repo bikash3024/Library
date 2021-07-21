@@ -22,6 +22,11 @@ html {
     margin: 0;
 }
 
+body {
+    background-color: rgb(116, 116, 116);
+    color: #fff;
+}
+
 h2 {
     font-size: 2rem;
 }
@@ -47,18 +52,16 @@ header {
 
 #add-book {
     font-size: 2rem;
-    position: absolute;
     border-radius: 50%;
-    background-color: blue;
+    background-color: #383838;
     height: 50px;
     width: 50px;
-    margin: 0 0 3% 3%;
-    bottom: 0px;
-    color: #000;
+    color: #fff;
     display: flex;
     align-items: center;
     justify-content: center;
     border: 1px solid #000;
+    align-self: center;
 }
 
 #catalog-container {
@@ -81,6 +84,8 @@ header {
     margin: 2%;
     padding: 2%;
     border: 1px solid gray;
+    display: flex;
+    flex-direction: column;
 }
 
 label {
@@ -92,7 +97,8 @@ label {
     padding: 0 0 0 10px;
     width: 70%;
     height: 75%;
-    background-color: #fff;
+    background-color: rgb(112, 112, 112);
+    color: #fff;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -109,6 +115,7 @@ label {
 .form-container {
     display: flex;
     position: fixed;
+    color: #000;
     top: 0;
     width: 100%;
     height: 100%;
@@ -133,4 +140,86 @@ select {
 
 button:disabled {
     border: 1px solid gray;
+}
+
+
+/* THis part for toggle button */
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 30px;
+    height: 20px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 15px;
+    width: 15px;
+    left: 1px;
+    bottom: 2.5px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input:checked+.slider {
+    background-color: #000;
+}
+
+input:checked+.slider:before {
+    -webkit-transform: translateX(13px);
+    -ms-transform: translateX(13px);
+    transform: translateX(13px);
+}
+
+
+/* Rounded sliders */
+
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+.readOrNotContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 80%;
+    margin: auto 0 0 0;
+}
+
+span {
+    font-size: 0.7rem;
+}
+
+
+/* readOrNot toggle stylings ends here */
+
+#banner {
+    display: flex;
+    justify-content: space-around;
+    background-color: #656565;
 }

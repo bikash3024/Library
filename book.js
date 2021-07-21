@@ -36,34 +36,72 @@ myLibrary.push(book4);
 myLibrary.push(book5);
 myLibrary.push(book6);
 
+function createReadOrNotContainer(currentNoBooks) {
+
+    let container = document.createElement("div");
+    container.classList.add("readOrNotContainer");
+    container.dataset.index = currentNoBooks;
+    let notReadSpan = document.createElement("span");
+    notReadSpan.textContent = "Not Read";
+    let readSpan = document.createElement("span");
+    readSpan.textContent = "Read";
+    let label = document.createElement("label");
+    label.classList.add("switch");
+    let input = document.createElement("input");
+    input.setAttribute("type", "checkbox");
+    input.dataset.index = currentNoBooks;
+    let roundSlider = document.createElement("div");
+    roundSlider.classList.add("slider", "round");
+
+    label.appendChild(input);
+    label.appendChild(roundSlider);
+
+    container.appendChild(notReadSpan);
+    container.appendChild(label);
+    container.appendChild(readSpan);
+
+    return container;
+
+}
+
+function createBookCard(book, currentNoBooks) {
+
+    let bookCard = document.createElement("div");
+    bookCard.classList.add("card");
+    let titleBook = document.createElement('h3');
+    titleBook.textContent = book.title;
+    let authorBook = document.createElement('p');
+    authorBook.textContent = `Author: ${book.author}`;
+    let pagesBook = document.createElement('p');
+    pagesBook.textContent = `No of pages: ${book.noOfPages}`;
+
+    bookCard.appendChild(titleBook);
+    bookCard.appendChild(authorBook);
+    bookCard.appendChild(pagesBook);
+    bookCard.dataset.index = currentNoBooks;
+    let readOrNotContainer = createReadOrNotContainer(currentNoBooks);
+    bookCard.appendChild(readOrNotContainer);
+
+    return bookCard;
+
+}
+
 
 function refreshBooks() {
 
     for (let i = currentNoBooks; i < myLibrary.length; i++) {
 
-        let bookdiv = document.createElement("div");
-        bookdiv.classList.add("card");
-        let titleBook = document.createElement('h3');
-        titleBook.textContent = myLibrary[i].title;
-        let authorBook = document.createElement('p');
-        authorBook.textContent = `Author: ${myLibrary[i].author}`;
-        let pagesBook = document.createElement('p');
-        pagesBook.textContent = `No of pages: ${myLibrary[i].noOfPages}`;
+        let bookCard = createBookCard(myLibrary[i], currentNoBooks);
 
-        bookdiv.appendChild(titleBook);
-        bookdiv.appendChild(authorBook);
-        bookdiv.appendChild(pagesBook);
-        bookdiv.dataset.index = currentNoBooks;
-
-        booksContainerDiv.appendChild(bookdiv);
+        booksContainerDiv.appendChild(bookCard);
 
         currentNoBooks++;
     }
 
-    const allBookCards = Array.from(document.querySelectorAll(".card"));
-    allBookCards.forEach((e) => {
-        console.log(e);
-    })
+    // const allBookCards = Array.from(document.querySelectorAll(".card"));
+    // allBookCards.forEach((e) => {
+    //     e.addEventListener("click", )
+    // })
 
     totalBooks.textContent = "Total books: " + myLibrary.length;
 }
@@ -120,8 +158,3 @@ titleInput.addEventListener("keyup", validateForm);
 authorInput.addEventListener("keyup", validateForm);
 noOfPagesInput.addEventListener("keyup", validateForm);
 readOrNotInput.addEventListener("change", validateForm);
-
-const allBookCards = Array.from(document.querySelectorAll(".card"));
-allBookCards.forEach((e) => {
-    console.log(e);
-})
